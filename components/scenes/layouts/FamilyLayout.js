@@ -3,7 +3,8 @@ import {
     View,
     Text,
     asset,
-    Image
+    Image,
+    VrButton
 } from 'react-vr';
 
 import ButtonClickable from './elements/ButtonClickable.js';
@@ -15,6 +16,7 @@ class FamilyLayout extends React.Component {
         choiceThis = this;
         this.state = {
             cursor: 0,
+            zoom:3.8,
             familyData: {
 
                 title: "Hillel & Ida Resnik",
@@ -24,7 +26,7 @@ class FamilyLayout extends React.Component {
                 "straw cutting machines, ploughs, horseshoes, and other farm implements. " +
                 "\nIda was the oldest daughter of of Grandpa Sussman and fell in love with Hillel." +
                 " Grandpa Yidell objected, since it was customary for the parents to choose a spouse for thier child" +
-                ", love was never heard of. After the marriage,\n Grandpa Yidell's dowry was a blacksmith shop" +
+                ", love was never heard of. After the marriage, Grandpa Yidell's dowry was a blacksmith shop" +
                 " fifty miles away from Smolovich as punishment for her disobedience.\n" +
                 "Kratzevich was a farmming comunity that only had one other jewish family besides us." +
                 "The other Jewish family made their living selling liquor and renting rooms to passing vistors." +
@@ -72,6 +74,13 @@ class FamilyLayout extends React.Component {
         if (t == "p" && this.state.cursor == 0 || t == "n" && this.state.cursor == 2)
             return "white";
         return "gray";
+    }
+    zoom(){
+        if (this.state.zoom == 4.1)
+            this.setState({zoom: 3.8});
+        else
+            this.setState({zoom: 4.1});
+
     }
 
     render() {
@@ -152,18 +161,20 @@ class FamilyLayout extends React.Component {
                                          clickable={this.state.cursor != 2}
                                          action={this.next.bind(this)}/>
                     </View>
-                    <Image
-                        style={{
-                            width: .7,
-                            height: .7,
-                            layoutOrigin: [0,3.9],
-                            transform: [
-                                {translateX: 0},
-                                {translateZ: 3.8}]
-                        }}
-                        source={asset("resnickmap.jpg")}
-                    >
-                    </Image>
+                    <VrButton onClick={this.zoom.bind(this)}>
+                        <Image
+                            style={{
+                                width: .7,
+                                height: .7,
+                                layoutOrigin: [0,3.9],
+                                transform: [
+                                    {translateX: 0},
+                                    {translateZ: this.state.zoom}]
+                            }}
+                            source={asset("resnickmap.jpg")}
+                        >
+                        </Image>
+                    </VrButton>
                 </View>
 
 
