@@ -1,7 +1,9 @@
 import React from 'react';
 import {
     View,
-    Text
+    Text,
+    asset,
+    Image
 } from 'react-vr';
 
 import ButtonClickable from './elements/ButtonClickable.js';
@@ -91,7 +93,7 @@ class FamilyLayout extends React.Component {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    layoutOrigin: [.5, .3],
+                    layoutOrigin: [.5, .35],
                     transform: [
                         {translateX: 0},
                         {translateZ: -5}]
@@ -120,7 +122,7 @@ class FamilyLayout extends React.Component {
                             height: 2,
                             fontWeight: '350',
                             layoutOrigin: [0, -.05],
-                            marginLeft: 0.2,
+                            paddingLeft: 0.2,
                             paddingRight: 0.2,
                             textAlign: 'left',
                             textAlignVertical: 'center',
@@ -150,6 +152,18 @@ class FamilyLayout extends React.Component {
                                          clickable={this.state.cursor != 2}
                                          action={this.next.bind(this)}/>
                     </View>
+                    <Image
+                        style={{
+                            width: .7,
+                            height: .7,
+                            layoutOrigin: [0,3.9],
+                            transform: [
+                                {translateX: 0},
+                                {translateZ: 3.8}]
+                        }}
+                        source={asset("resnickmap.jpg")}
+                    >
+                    </Image>
                 </View>
 
 
